@@ -75,8 +75,7 @@ volumeSlider.addEventListener('click', () => {
 })
 
 oldButton.addEventListener('click', () => {
-	if (videoObject.classList.contains('video')) {
-		videoObject.classList.remove('video')
+	if (!videoObject.classList.contains('oldSchool')) {
 		videoObject.classList.add('oldSchool')
 	}
 
@@ -85,12 +84,10 @@ oldButton.addEventListener('click', () => {
 originalButton.addEventListener('click', () => {
 	if (videoObject.classList.contains('oldSchool')) {
 		videoObject.classList.remove('oldSchool')
-		videoObject.classList.add('video')
+		
 	}
 
 })
 
-// document.querySelector("#play").addEventListener("click", function() {
-// 	console.log("Play Video");
-// });
+
 
