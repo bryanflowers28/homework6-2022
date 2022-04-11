@@ -7,7 +7,14 @@ const fasterButton = document.querySelector('#faster');
 const skipButton = document.querySelector('#skip');
 const muteButton = document.querySelector('#mute');
 const videoObject = document.querySelector('#player1');
-const volume = document.querySelector('#volume');
+const volumeDiv = document.querySelector('#volume');
+const volumeSlider = document.querySelector('#slider');
+const oldButton = document.querySelector('#vintage');
+const originalButton = document.querySelector('#orig');
+
+
+
+
 videoObject.autoplay = false
 videoObject.loop = false
 
@@ -19,7 +26,7 @@ window.addEventListener("load", function() {
 playButton.addEventListener('click', () => {
 	videoObject.play();
 	console.log("Play Video")
-	volume.textContent = videoObject.volume
+	volumeDiv.textContent = volumeSlider.value + '%'
 })
 
 pauseButton.addEventListener('click', () => {
@@ -41,7 +48,6 @@ fasterButton.addEventListener('click', () => {
 skipButton.addEventListener('click', () => {
 	let cutoff = videoObject.duration - 15
 	if ((videoObject.currentTime) > cutoff) {
-		videoObject.pause()
 		videoObject.currentTime = 0
 		console.log(videoObject.currentTime)
 	}
@@ -52,7 +58,35 @@ skipButton.addEventListener('click', () => {
 })
 
 muteButton.addEventListener('click', () => {
+	if (videoObject.muted == true) {
+		videoObject.muted = false
+		muteButton.textContent = 'Mute'
+	} else {
+		videoObject.muted = true;
+		muteButton.textContent = 'Unmute'
+	}
 
+})
+
+volumeSlider.addEventListener('click', () => {
+	volumeDiv.textContent = volumeSlider.value + '%'
+	videoObject.volume = volumeSlider.value /100
+
+})
+
+oldButton.addEventListener('click', () => {
+	if (videoObject.classList.contains('video')) {
+		videoObject.classList.remove('video')
+		videoObject.classList.add('oldSchool')
+	}
+
+})
+
+originalButton.addEventListener('click', () => {
+	if (videoObject.classList.contains('oldSchool')) {
+		videoObject.classList.remove('oldSchool')
+		videoObject.classList.add('video')
+	}
 
 })
 
